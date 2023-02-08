@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)file:///C:/Users/Shivang%20Joshi/Downloads/LAB6.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+  <title>Shopping List</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: lightgray;
+    }
+
+    #itemInput, #addBtn {
+      height: 30px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shopping List</h1>
+  <input type="text" id="itemInput">
+  <button id="addBtn">Add</button>
+  <table id="shoppingList">
+    <tbody><tr>
+      <th>Item</th>
+      <th>Actions</th>
+    </tr>
+  </tbody></table>
+  <script>
+    const model = {
+      items: []
+    };
+
+    const view = {
+      renderList: function() {
+        const shoppingList = document.getElementById("shoppingList");
+        shoppingList.innerHTML = "";
+        model.items.forEach(function(item) {
+          const newRow = document.createElement("tr");
+          const itemCell = document.createElement("td");
+          itemCell.innerHTML = item;
+          newRow.appendChild(itemCell);
+          shoppingList.appendChild(newRow);
+        });
+      }
+    };
+
+    const controller = {
+      addItem: function() {
+        const itemInput = document.getElementById("itemInput");
+        const itemValue = itemInput.value;
+        model.items.push(itemValue);
+        view.renderList();
+      }
+    };
+
+    const addBtn = document.getElementById("addBtn");
+    addBtn.addEventListener("click", controller.addItem);
+  </script>
+
+
+</body></html>
